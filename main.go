@@ -26,6 +26,27 @@ type ListItem struct {
 	Data string `json:"data,omitempty"`
 }
 
+//DB interaction methods
+func getLists(w http.ResponseWriter, r *http.Request) {
+
+}
+
+func getList(w http.ResponseWriter, r *http.Request) {
+
+}
+
+func createList(w http.ResponseWriter, r *http.Request) {
+
+}
+
+func updateList(w http.ResponseWriter, r *http.Request) {
+
+}
+
+func deleteList(w http.ResponseWriter, r *http.Request) {
+
+}
+
 func main() {
 	//Init Router
 	fmt.Println("Server starting up...")
