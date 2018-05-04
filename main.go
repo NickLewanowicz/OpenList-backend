@@ -11,6 +11,21 @@ import (
 	"github.com/gorilla/mux"
 )
 
+//List Struct
+type List struct {
+	ID    string `json:"id,omitempty"`
+	Owner string `json:"owner,omitempty"`
+	Title string `json:"title,omitempty"`
+	Date  string `json:"date,omitempty"`
+}
+
+//ListItem Struct
+type ListItem struct {
+	ID   string `json:"id,omitempty"`
+	List string `json:"list,omitempty"`
+	Data string `json:"data,omitempty"`
+}
+
 func main() {
 	//Init Router
 	fmt.Println("Server starting up...")
