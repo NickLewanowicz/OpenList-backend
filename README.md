@@ -18,3 +18,10 @@ The server is now running :)
 
 ### Configuration 
 **TBD**
+
+
+###Resources Used
+- [Restfull Go API Article] (https://thenewstack.io/make-a-restful-json-api-go/)
+- [Go Documentation] (https://golang.org/doc/)
+- [MySQL driver] (https://github.com/go-sql-driver/mysql#examples)
+- [MySQL with Go] (https://tutorialedge.net/golang/golang-mysql-tutorial/)
