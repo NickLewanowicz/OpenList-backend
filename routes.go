@@ -32,7 +32,7 @@ func NewRouter() *mux.Router {
 			Methods(route.Method).
 			Path(route.Pattern).
 			Name(route.Name).
-			Handler(route.HandlerFunc)
+			Handler(handler)
 	}
 
 	return router
@@ -42,31 +42,31 @@ var routes = Routes{
 	Route{
 		"GetLists",
 		"GET",
-		"/v1/api/lists",
+		"/api/v1/lists",
 		GetLists,
 	},
 	Route{
 		"GetList",
 		"GET",
-		"/v1/api/lists/{id}",
+		"/api/v1/lists/{id}",
 		GetList,
 	},
 	Route{
 		"CreateList",
 		"POST",
-		"/v1/api/lists/{id}",
+		"/api/v1/lists/{id}",
 		CreateList,
 	},
 	Route{
 		"UpdateList",
 		"PUT",
-		"/v1/api/lists/{id}",
+		"/api/v1/lists/{id}",
 		UpdateList,
 	},
 	Route{
 		"DeleteList",
 		"DELETE",
-		"/v1/api/lists/{id}",
+		"/api/v1/lists/{id}",
 		DeleteList,
 	},
 }
