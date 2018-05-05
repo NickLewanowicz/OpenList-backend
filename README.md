@@ -7,13 +7,10 @@ See `Projects` tab for activity and goals with this project!
 
 ### Installation
 For mac/unix install run the following in bash:  
-`git clone https://github.com/NickLewanowicz/OpenList-backend.git`
-
-`cd OpenList-backend`
-
-`go build`
-
-`OpenList-backend`
+- `git clone https://github.com/NickLewanowicz/OpenList-backend.git`
+- `cd OpenList-backend`
+- `go build`
+- `OpenList-backend`
 
 The server is now running :)
 
