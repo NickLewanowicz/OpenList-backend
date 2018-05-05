@@ -41,10 +41,13 @@ func createDb(name string) {
 }
 
 func createTable(name string) {
-
+	_, err = db.Exec("CREATE TABLE " + name + " ( id integer, data varchar(32) )")
+	if err != nil {
+		panic(err)
+	}
 }
 
-//SaveListToDb will save the provided list to the db
-func SaveListToDb(l List) {
-
-}
+// //SaveListToDb will save the provided list to the db
+// func SaveListToDb(l List) {
+// 	stmtSave, err := db.Prepare("INSERT INTO list VALUES (:id, :owner, :title, :date)")
+// }
