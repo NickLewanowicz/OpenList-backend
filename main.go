@@ -55,8 +55,8 @@ func main() {
 	//Route Handlers
 	r.HandleFunc("/v1/api/list", getLists).Methods("GET")
 	r.HandleFunc("/v1/api/list/{id}", getList).Methods("GET")
-	r.HandleFunc("/v1/api/list/{id}", createList).Methods("PUT")
-	r.HandleFunc("/v1/api/list/{id}", updateList).Methods("GET")
+	r.HandleFunc("/v1/api/list/{id}", createList).Methods("POST")
+	r.HandleFunc("/v1/api/list/{id}", updateList).Methods("PUT")
 	r.HandleFunc("/v1/api/list/{id}", deleteList).Methods("DELETE")
 
 	log.Fatal(http.ListenAndServe(":8000", r))
