@@ -8,20 +8,43 @@ import (
 )
 
 var db *sql.DB
+var err error
 
-func initDb() {
-	var err error
-	db, err = sql.Open("mysql", "root:password@tcp(127.0.0.1:3306)/openlistdb")
+func initDb(name string) {
+	fmt.Println("Attempting to Initialize MySQL Database")
+	db, err = sql.Open("mysql", "root:password@tcp(127.0.0.1:3306)/")
+	createDb(name)
 
+	fmt.Printf("    - Connected to DB ")
 	if err != nil {
-		fmt.Println("Failed to connect to DB")
+		fmt.Println("[FAILED]")
 		panic(err.Error())
 	}
+	fmt.Println("[SUCCESS]")
 	defer db.Close()
 
-	fmt.Println("Successfully connected to DB")
+}
+
+func createDb(name string) {
+	fmt.Printf("    - Creating and use '" + name + "' database. ")
+	_, err = db.Exec("CREATE DATABASE  IF NOT EXISTS " + name)
+	if err != nil {
+		fmt.Println("[FAILED]")
+		panic(err)
+	}
+	fmt.Println("[SUCCESS]")
+
+	_, err = db.Exec("USE " + name)
+	if err != nil {
+		panic(err)
+	}
+}
+
+func createTable(name string) {
+
 }
 
 //SaveListToDb will save the provided list to the db
 func SaveListToDb(l List) {
+
 }
