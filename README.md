@@ -6,7 +6,18 @@ The end goal for this project is to create a repo which anybody can fork or clon
 See `Projects` tab for activity and goals with this project!
 
 ### Installation
-**TBD**
+For mac/unix install run the following in bash:  
+`git clone https://github.com/NickLewanowicz/OpenList-backend.git`
+
+`cd OpenList-backend`
+
+`go build`
+
+`OpenList-backend`
+
+The server is now running :)
+
+
 
 ### Configuration 
 **TBD**
