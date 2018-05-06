@@ -21,8 +21,10 @@ func initDb(name string) {
 	if err != nil {
 		fmt.Println("[FAILED]")
 		panic(err.Error())
+	} else {
+		fmt.Println("[SUCCESS]")
 	}
-	fmt.Println("[SUCCESS]")
+
 	createDb(name)
 	createTable("list", listColumns)
 	createTable("listItems", listItemColumns)
@@ -38,8 +40,9 @@ func createDb(name string) {
 	if err != nil {
 		fmt.Println("[FAILED]")
 		panic(err)
+	} else {
+		fmt.Println("[SUCCESS]")
 	}
-	fmt.Println("[SUCCESS]")
 
 	//Select (use) given database
 	_, err = db.Exec("USE " + name)
@@ -55,8 +58,9 @@ func createTable(name string, columns string) {
 	if err != nil {
 		fmt.Println("[FAILED]")
 		panic(err)
+	} else {
+		fmt.Println("[SUCCESS]")
 	}
-	fmt.Println("[SUCCESS]")
 
 }
 
