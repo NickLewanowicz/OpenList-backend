@@ -8,8 +8,13 @@ import (
 
 //GetLists : Get all lists
 func GetLists(w http.ResponseWriter, r *http.Request) {
-	GetListsInDb("")
-
+	var lists = GetListsInDb("")
+	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+	w.WriteHeader(http.StatusOK)
+	if err := json.NewEncoder(w).Encode(lists); err != nil {
+		panic(err)
+	}
+	return
 }
 
 //GetList : Get single list based on ID
