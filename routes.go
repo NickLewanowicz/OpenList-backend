@@ -54,7 +54,7 @@ var routes = Routes{
 	Route{
 		"CreateList",
 		"POST",
-		"/api/v1/lists/{id}",
+		"/api/v1/lists",
 		CreateList,
 	},
 	Route{
