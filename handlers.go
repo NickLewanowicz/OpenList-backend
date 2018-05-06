@@ -28,7 +28,7 @@ func CreateList(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		panic(err)
 	}
-	SaveListToDb(list)
+	SaveListInDb(list)
 }
 
 //UpdateList : update the information of a list on the db

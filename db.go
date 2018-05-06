@@ -74,13 +74,13 @@ func FormatListForDb(l List) string {
 	return ""
 }
 
-//SaveListToDb will save the provided list to the db
-func SaveListToDb(list List) {
+//SaveListInDb will save the provided list to the db
+func SaveListInDb(list List) {
 	list.ID = uuid.Must(uuid.NewV4()).String()
 	list.Date = time.Now().Unix()
 	fmt.Printf("Inserting '" + list.Title + "' into List table ")
-	fmt.Printf(list.toSQL())
-	_, err = db.Exec("INSERT INTO list VALUES " + list.toSQL())
+	fmt.Printf(list.insertSQL())
+	_, err = db.Exec(list.insertSQL())
 	if err != nil {
 		fmt.Println("[FAILED]")
 		panic(err)
