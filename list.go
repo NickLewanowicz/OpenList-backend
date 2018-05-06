@@ -16,7 +16,7 @@ func (l List) insertSQL() string {
 }
 
 func (l List) updateSQL() string {
-	return "UPDATE " + listTable + " SET list id='" + l.ID + "',owner='" + l.Owner + "',title='" + l.Title + "',date='" + strconv.Itoa(int(l.Date)) + "'"
+	return "UPDATE " + listTable + " SET owner='" + l.Owner + "',title='" + l.Title + "',date='" + strconv.Itoa(int(l.Date)) + "' WHERE id='" + l.ID + "'"
 }
 
 //ListItem struct

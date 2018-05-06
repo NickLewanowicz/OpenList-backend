@@ -33,6 +33,18 @@ func CreateList(w http.ResponseWriter, r *http.Request) {
 
 //UpdateList : update the information of a list on the db
 func UpdateList(w http.ResponseWriter, r *http.Request) {
+	//Eventually use the item in the URL rather then just body
+	var list List
+	defer r.Body.Close()
+	body, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		panic(err)
+	}
+	err = json.Unmarshal(body, &list)
+	if err != nil {
+		panic(err)
+	}
+	UpdateListInDb(list)
 
 }
 
