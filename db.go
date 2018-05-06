@@ -13,7 +13,8 @@ var err error
 func initDb(name string) {
 	fmt.Println("Attempting to Initialize MySQL Database")
 	db, err = sql.Open("mysql", "root:password@tcp(127.0.0.1:3306)/")
-	createDb(name)
+
+	listColumns := "(id varchar(32), owner varchar(32), title varchar(32), date int(11))"
 
 	fmt.Printf("    - Connected to DB ")
 	if err != nil {
@@ -21,30 +22,40 @@ func initDb(name string) {
 		panic(err.Error())
 	}
 	fmt.Println("[SUCCESS]")
+	createDb(name)
+	createTable("list", listColumns)
 	defer db.Close()
 
 }
 
 func createDb(name string) {
 	fmt.Printf("    - Creating and use '" + name + "' database. ")
-	_, err = db.Exec("CREATE DATABASE  IF NOT EXISTS " + name)
+
+	//Create given Database if it doesnt exist
+	_, err = db.Exec("CREATE DATABASE IF NOT EXISTS " + name)
 	if err != nil {
 		fmt.Println("[FAILED]")
 		panic(err)
 	}
 	fmt.Println("[SUCCESS]")
 
+	//Select (use) given database
 	_, err = db.Exec("USE " + name)
 	if err != nil {
 		panic(err)
 	}
 }
 
-func createTable(name string) {
-	_, err = db.Exec("CREATE TABLE " + name + " ( id integer, data varchar(32) )")
+func createTable(name string, columns string) {
+	fmt.Printf("    - Creating " + name + "tables if they dont exist ")
+	//Create the necessary tables for openlist
+	_, err = db.Exec("CREATE TABLE " + name + " " + columns)
 	if err != nil {
+		fmt.Println("[FAILED]")
 		panic(err)
 	}
+	fmt.Println("[SUCCESS]")
+
 }
 
 // //SaveListToDb will save the provided list to the db
