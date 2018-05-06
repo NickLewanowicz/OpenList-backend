@@ -11,6 +11,10 @@ type List struct {
 	Items []ListItem `json:"items"`
 }
 
+func (l List) toSQL() string {
+	return "(" + l.ID + "," + l.Owner + "," + l.Title + "," + l.Date.String() + ")"
+}
+
 //ListItem struct
 type ListItem struct {
 	ID   string `json:"id"`
