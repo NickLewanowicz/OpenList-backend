@@ -35,7 +35,7 @@ func initDb() {
 	createTable(listTable, listColumns)
 	createTable(listItemTable, listItemColumns)
 
-	fmt.Println("MySQL Database fully initialized")
+	fmt.Println("MySQL Database fully initialized\n")
 }
 
 func createDb(name string) {
