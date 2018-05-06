@@ -9,6 +9,8 @@ import (
 
 var db *sql.DB
 var err error
+var listTable = "List"
+var listItemTable = "ListItems"
 
 func initDb(name string) {
 	fmt.Println("Attempting to Initialize MySQL Database")
@@ -25,9 +27,12 @@ func initDb(name string) {
 		fmt.Println("[SUCCESS]")
 	}
 
+	//Create db and required tables that dont exist
 	createDb(name)
-	createTable("list", listColumns)
-	createTable("listItems", listItemColumns)
+	createTable(listTable, listColumns)
+	createTable(listItemTable, listItemColumns)
+
+	fmt.Println("MySQL Database fully initialized")
 	defer db.Close()
 
 }
@@ -64,7 +69,19 @@ func createTable(name string, columns string) {
 
 }
 
-// //SaveListToDb will save the provided list to the db
-// func SaveListToDb(l List) {
-// 	stmtSave, err := db.Prepare("INSERT INTO list VALUES (:id, :owner, :title, :date)")
-// }
+//FormatListForDb will take a List and format a string for the db.Prepare
+func FormatListForDb(l List) string {
+	return ""
+}
+
+//SaveListToDb will save the provided list to the db
+func SaveListToDb(list List) {
+	fmt.Printf("Inserting '" + list.Title + "' into List table")
+	_, err = db.Exec("INSERT INTO list VALUES " + FormatListForDb(list))
+	if err != nil {
+		fmt.Println("[FAILED]")
+		panic(err)
+	} else {
+		fmt.Println("[SUCCESS]")
+	}
+}
