@@ -16,7 +16,7 @@ func initDb(name string) {
 	fmt.Println("Attempting to Initialize MySQL Database")
 	db, err = sql.Open("mysql", "root:password@tcp(127.0.0.1:3306)/")
 
-	listColumns := "(id varchar(32), owner varchar(32), title varchar(32), date int(11))"
+	listColumns := "(id varchar(40), owner varchar(32), title varchar(32), date int(11))"
 	listItemColumns := "(id varchar(32), list varchar(32), data varchar(1000))"
 
 	fmt.Printf("    - Connected to DB ")
@@ -34,7 +34,6 @@ func initDb(name string) {
 
 	fmt.Println("MySQL Database fully initialized")
 	defer db.Close()
-
 }
 
 func createDb(name string) {
@@ -76,7 +75,8 @@ func FormatListForDb(l List) string {
 
 //SaveListToDb will save the provided list to the db
 func SaveListToDb(list List) {
-	fmt.Printf("Inserting '" + list.Title + "' into List table")
+	fmt.Printf("Inserting '" + list.Title + "' into List table ")
+	fmt.Printf(list.toSQL())
 	_, err = db.Exec("INSERT INTO list VALUES " + list.toSQL())
 	if err != nil {
 		fmt.Println("[FAILED]")
