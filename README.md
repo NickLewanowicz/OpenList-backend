@@ -5,10 +5,12 @@ The end goal for this project is to create a repo which anybody can fork or clon
 
 See `Projects` tab for activity and goals with this project!
 
-### Installation
-Please Install Go:
+### Prerequisites
 
-https://golang.org/doc/install
+Go: https://golang.org/doc/install
+MySQL: https://dev.mysql.com/downloads/mysql/
+
+### Installation
 
 After I complete the dockerfile this hopefully wont be necessary
 For mac/unix install run the following in bash:  
