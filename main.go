@@ -12,4 +12,5 @@ func main() {
 	r := NewRouter()
 	initDb("openlist")
 	log.Fatal(http.ListenAndServe(":8000", r))
+	defer db.Close()
 }

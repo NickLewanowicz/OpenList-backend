@@ -33,7 +33,6 @@ func initDb(name string) {
 	createTable(listItemTable, listItemColumns)
 
 	fmt.Println("MySQL Database fully initialized")
-	defer db.Close()
 }
 
 func createDb(name string) {
