@@ -3,8 +3,10 @@ package main
 import (
 	"database/sql"
 	"fmt"
+	"time"
 
 	_ "github.com/go-sql-driver/mysql"
+	uuid "github.com/satori/go.uuid"
 )
 
 var db *sql.DB
@@ -74,6 +76,8 @@ func FormatListForDb(l List) string {
 
 //SaveListToDb will save the provided list to the db
 func SaveListToDb(list List) {
+	list.ID = uuid.Must(uuid.NewV4()).String()
+	list.Date = time.Now().Unix()
 	fmt.Printf("Inserting '" + list.Title + "' into List table ")
 	fmt.Printf(list.toSQL())
 	_, err = db.Exec("INSERT INTO list VALUES " + list.toSQL())
