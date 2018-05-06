@@ -104,6 +104,28 @@ func GetListsInDb(owner string) []List {
 	return lists
 }
 
+//GetListInDb will get a list by list id
+func GetListInDb(id string) List {
+	var list List
+	fmt.Printf("Fetching list with id '" + id + "' from " + listTable)
+
+	result, err := db.Query("SELECT id, owner, title, date FROM " + listTable + " WHERE id='" + id + "'")
+	if err != nil {
+		fmt.Println("[FAILED]")
+		panic(err)
+	} else {
+		fmt.Println("[SUCCESS]")
+	}
+	result.Next()
+
+	err = result.Scan(&list.ID, &list.Owner, &list.Title, &list.Date)
+	if err != nil {
+		panic(err.Error())
+	}
+
+	return list
+}
+
 //SaveListInDb will save the provided list to the db
 func SaveListInDb(list List) {
 	list.ID = uuid.Must(uuid.NewV4()).String()

@@ -2,8 +2,10 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net/http"
+	"strings"
 )
 
 //GetLists : Get all lists
@@ -19,7 +21,8 @@ func GetLists(w http.ResponseWriter, r *http.Request) {
 
 //GetList : Get single list based on ID
 func GetList(w http.ResponseWriter, r *http.Request) {
-
+	id := strings.Split(r.URL.Path, "/")
+	fmt.Println(GetListInDb(id[len(id)-1]))
 }
 
 //CreateList : Create a list on the DB
