@@ -11,10 +11,11 @@ import (
 
 var db *sql.DB
 var err error
+var dbName = "openlist"
 var listTable = "List"
 var listItemTable = "ListItems"
 
-func initDb(name string) {
+func initDb() {
 	fmt.Println("Attempting to Initialize MySQL Database")
 	db, err = sql.Open("mysql", "root:password@tcp(127.0.0.1:3306)/")
 
@@ -30,7 +31,7 @@ func initDb(name string) {
 	}
 
 	//Create db and required tables that dont exist
-	createDb(name)
+	createDb(dbName)
 	createTable(listTable, listColumns)
 	createTable(listItemTable, listItemColumns)
 
@@ -38,7 +39,7 @@ func initDb(name string) {
 }
 
 func createDb(name string) {
-	fmt.Printf("    - Creating and use '" + name + "' database. ")
+	fmt.Printf("    - Creating '" + name + "' database. ")
 
 	//Create given Database if it doesnt exist
 	_, err = db.Exec("CREATE DATABASE IF NOT EXISTS " + name)
@@ -50,9 +51,13 @@ func createDb(name string) {
 	}
 
 	//Select (use) given database
+	fmt.Printf("    - Use database '" + name + "'. ")
 	_, err = db.Exec("USE " + name)
 	if err != nil {
+		fmt.Println("[FAILED]")
 		panic(err)
+	} else {
+		fmt.Println("[SUCCESS]")
 	}
 }
 
