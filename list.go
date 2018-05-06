@@ -12,7 +12,7 @@ type List struct {
 }
 
 func (l List) insertSQL() string {
-	return "INSERT INTO " + listTable + "VALUES ('" + l.ID + "','" + l.Owner + "','" + l.Title + "','" + strconv.Itoa(int(l.Date)) + "')"
+	return "INSERT INTO " + listTable + " VALUES ('" + l.ID + "','" + l.Owner + "','" + l.Title + "','" + strconv.Itoa(int(l.Date)) + "')"
 }
 
 func (l List) updateSQL() string {
