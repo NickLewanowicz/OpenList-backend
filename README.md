@@ -19,6 +19,8 @@ For mac/unix install run the following in bash:
 
 The server is now running :)
 
+Ex.
+![](https://image.ibb.co/hC9Rtn/carbon_19.png)
 
 
 ### Configuration 
