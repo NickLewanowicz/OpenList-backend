@@ -77,7 +77,7 @@ func FormatListForDb(l List) string {
 //SaveListToDb will save the provided list to the db
 func SaveListToDb(list List) {
 	fmt.Printf("Inserting '" + list.Title + "' into List table")
-	_, err = db.Exec("INSERT INTO list VALUES " + FormatListForDb(list))
+	_, err = db.Exec("INSERT INTO list VALUES " + list.toSQL())
 	if err != nil {
 		fmt.Println("[FAILED]")
 		panic(err)
