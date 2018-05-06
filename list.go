@@ -1,18 +1,18 @@
 package main
 
-import "time"
+import "strconv"
 
 //List struct
 type List struct {
 	ID    string     `json:"id"`
 	Owner string     `json:"owner"`
 	Title string     `json:"title"`
-	Date  time.Time  `json:"date"`
+	Date  int64      `json:"date"`
 	Items []ListItem `json:"items"`
 }
 
 func (l List) toSQL() string {
-	return "(" + l.ID + "," + l.Owner + "," + l.Title + "," + l.Date.String() + ")"
+	return "('" + l.ID + "','" + l.Owner + "','" + l.Title + "','" + strconv.Itoa(int(l.Date)) + "')"
 }
 
 //ListItem struct
