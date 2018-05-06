@@ -88,3 +88,18 @@ func SaveListInDb(list List) {
 		fmt.Println("[SUCCESS]")
 	}
 }
+
+//UpdateListInDb will take list and update it in db
+func UpdateListInDb(list List) {
+	//UPDATE Customers SET ContactName = 'Alfred Schmidt', City= 'Frankfurt' WHERE CustomerID = 1;
+	list.Date = time.Now().Unix()
+	fmt.Printf("Updating '" + list.Title + "' into List table ")
+	fmt.Printf(list.updateSQL())
+	_, err = db.Exec(list.updateSQL())
+	if err != nil {
+		fmt.Println("[FAILED]")
+		panic(err)
+	} else {
+		fmt.Println("[SUCCESS]")
+	}
+}

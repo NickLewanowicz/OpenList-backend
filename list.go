@@ -15,6 +15,10 @@ func (l List) insertSQL() string {
 	return "INSERT INTO " + listTable + "VALUES ('" + l.ID + "','" + l.Owner + "','" + l.Title + "','" + strconv.Itoa(int(l.Date)) + "')"
 }
 
+func (l List) updateSQL() string {
+	return "UPDATE " + listTable + " SET list id='" + l.ID + "',owner='" + l.Owner + "',title='" + l.Title + "',date='" + strconv.Itoa(int(l.Date)) + "'"
+}
+
 //ListItem struct
 type ListItem struct {
 	ID   string `json:"id"`
