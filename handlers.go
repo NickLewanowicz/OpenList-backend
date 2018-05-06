@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"net/http"
 	"strings"
@@ -22,7 +21,13 @@ func GetLists(w http.ResponseWriter, r *http.Request) {
 //GetList : Get single list based on ID
 func GetList(w http.ResponseWriter, r *http.Request) {
 	id := strings.Split(r.URL.Path, "/")
-	fmt.Println(GetListInDb(id[len(id)-1]))
+	var list = GetListInDb(id[len(id)-1])
+	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+	w.WriteHeader(http.StatusOK)
+	if err := json.NewEncoder(w).Encode(list); err != nil {
+		panic(err)
+	}
+	return
 }
 
 //CreateList : Create a list on the DB
