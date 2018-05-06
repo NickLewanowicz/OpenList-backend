@@ -81,7 +81,7 @@ func FormatListForDb(l List) string {
 
 //GetListsInDb will get all lists in db (eventually of a particular owner)
 func GetListsInDb(owner string) {
-
+	var lists []List
 	fmt.Printf("Fetching all lists of '" + owner + "' from " + listTable)
 
 	results, err := db.Query("SELECT id, owner, title, date FROM " + listTable)
@@ -92,20 +92,18 @@ func GetListsInDb(owner string) {
 		fmt.Println("[SUCCESS]")
 	}
 	for results.Next() {
-		//var list List
-		var id string
-		var owner string
-		var title string
-		var date int64
+		var list List
 
 		// for each row, scan the result into our tag composite object
-		err = results.Scan(&id, &owner, &title, &date)
+		err = results.Scan(&list.ID, &list.Owner, &list.Title, &list.Date)
 		if err != nil {
 			panic(err.Error()) // proper error handling instead of panic in your app
 		}
 		// and then print out the tag's Name attribute
-		fmt.Println(id, owner, title, date)
+		fmt.Println(list)
+		lists = append(lists, list)
 	}
+	fmt.Println(lists)
 }
 
 //SaveListInDb will save the provided list to the db
