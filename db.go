@@ -128,7 +128,7 @@ func GetListInDb(id string) List {
 
 //SaveListInDb will save the provided list to the db
 func SaveListInDb(list List) {
-	list.ID = uuid.Must(uuid.NewV4()).String()
+	list.ID = uuid.Must(uuid.NewV4(), err).String()
 	list.Date = time.Now().Unix()
 	fmt.Printf("Inserting '" + list.Title + "' into List table ")
 	fmt.Printf(list.insertSQL())
