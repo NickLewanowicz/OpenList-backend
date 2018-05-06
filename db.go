@@ -15,6 +15,7 @@ func initDb(name string) {
 	db, err = sql.Open("mysql", "root:password@tcp(127.0.0.1:3306)/")
 
 	listColumns := "(id varchar(32), owner varchar(32), title varchar(32), date int(11))"
+	listItemColumns := "(id varchar(32), list varchar(32), data varchar(1000))"
 
 	fmt.Printf("    - Connected to DB ")
 	if err != nil {
@@ -24,6 +25,7 @@ func initDb(name string) {
 	fmt.Println("[SUCCESS]")
 	createDb(name)
 	createTable("list", listColumns)
+	createTable("listItems", listItemColumns)
 	defer db.Close()
 
 }
@@ -47,9 +49,9 @@ func createDb(name string) {
 }
 
 func createTable(name string, columns string) {
-	fmt.Printf("    - Creating " + name + "tables if they dont exist ")
+	fmt.Printf("    - Creating " + name + " tables if they dont exist ")
 	//Create the necessary tables for openlist
-	_, err = db.Exec("CREATE TABLE " + name + " " + columns)
+	_, err = db.Exec("CREATE TABLE IF NOT EXISTS " + name + " " + columns)
 	if err != nil {
 		fmt.Println("[FAILED]")
 		panic(err)
