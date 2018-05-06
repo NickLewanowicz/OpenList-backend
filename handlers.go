@@ -8,6 +8,7 @@ import (
 
 //GetLists : Get all lists
 func GetLists(w http.ResponseWriter, r *http.Request) {
+	GetListsInDb("")
 
 }
 
