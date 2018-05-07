@@ -3,6 +3,7 @@ package main
 import (
 	"database/sql"
 	"fmt"
+	"strconv"
 	"time"
 
 	_ "github.com/go-sql-driver/mysql"
@@ -16,8 +17,17 @@ var listTable = "List"
 var listItemTable = "ListItems"
 
 func initDb() {
-	fmt.Println("Attempting to Initialize MySQL Database")
-	db, err = sql.Open("mysql", "root:password@tcp(127.0.0.1:3306)/")
+	attempts := 1
+	for err != nil || attempts < 2 {
+		fmt.Println("Attempting to Initialize MySQL Database [" + strconv.Itoa(attempts) + "/50]")
+		db, err = sql.Open("mysql", "root:password@tcp(127.0.0.1:3306)/")
+		_, err = db.Query("SHOW DATABASES")
+		if attempts > 50 {
+			break
+		}
+		attempts++
+		time.Sleep(time.Second)
+	}
 
 	listColumns := "(id varchar(40), owner varchar(32), title varchar(32), date int(11))"
 	listItemColumns := "(id varchar(32), list varchar(32), data varchar(1000))"
@@ -25,7 +35,7 @@ func initDb() {
 	fmt.Printf("    - Connected to DB ")
 	if err != nil {
 		fmt.Println("[FAILED]")
-		panic(err.Error())
+		panic(err)
 	} else {
 		fmt.Println("[SUCCESS]")
 	}
