@@ -14,7 +14,8 @@ var db *sql.DB
 var err error
 var dbName = "openlist"
 var listTable = "List"
-var listItemTable = "ListItems"
+var listItemTable = "ListItem"
+var userTable = "User"
 
 func initDb() {
 	attempts := 1
