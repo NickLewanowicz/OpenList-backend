@@ -69,4 +69,16 @@ var routes = Routes{
 		"/api/v1/lists/{id}",
 		DeleteList,
 	},
+	Route{
+		"GraphQl",
+		"POST",
+		"/api/graphql",
+		GraphQl,
+	},
+	Route{
+		"GraphQl",
+		"GET",
+		"/api/graphql",
+		GraphQl,
+	},
 }
