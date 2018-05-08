@@ -1,7 +1,9 @@
-## OpenList-Backend
-This repository will contain the Go implementation for the OpenList backend. The intention of this project is to create a fully dockerized open source service to manage tasks and lists.
+## kickit-Backend
+This repository will contain the Go implementation for the kickit backend. The intention of this project is to create a fully dockerized open source service to manage users, projects, and tasks. 
 
-The end goal for this project is to create a repo which anybody can fork or clone and put up on any service which supports docker ie Now-CLI, AWS, Vultr, ect. and have their own local list manager. The UI for this lives [here](https://github.com/NickLewanowicz/OpenList-app) as a react native application and there will be a desktop web app made in react but there is no projected timeline for completion for those.
+The end goal for this project is to create a repo which anybody can fork or clone and put up on any service which supports docker ie Now-CLI, AWS, Vultr, ect. and have their own project/task manager. The UI for this lives [here](https://github.com/NickLewanowicz/OpenList-app) as a react native application and there will be a desktop web app made in react but there is no projected timeline for completion for those.
+
+<b>tldr; Open source Asana/Trello</b>
 
 See `Projects` tab for activity and goals with this project!
 
@@ -14,7 +16,7 @@ MySQL: https://dev.mysql.com/downloads/mysql/
 
 After I complete the dockerfile this hopefully wont be necessary
 For mac/unix install run the following in bash:  
-- `git clone https://github.com/NickLewanowicz/OpenList-backend.git`
+- `go get github.com/NickLewanowicz/OpenList-backend`
 - `cd OpenList-backend`
 - `go build`
 - `OpenList-backend`
