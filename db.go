@@ -54,34 +54,19 @@ func createDb(name string) {
 
 	//Create given Database if it doesnt exist
 	_, err = db.Exec("CREATE DATABASE IF NOT EXISTS " + name)
-	if err != nil {
-		fmt.Println("[FAILED]")
-		panic(err)
-	} else {
-		fmt.Println("[SUCCESS]")
-	}
+	didError(err)
 
 	//Select (use) given database
 	fmt.Printf("    - Use database '" + name + "'. ")
 	_, err = db.Exec("USE " + name)
-	if err != nil {
-		fmt.Println("[FAILED]")
-		panic(err)
-	} else {
-		fmt.Println("[SUCCESS]")
-	}
+	didError(err)
 }
 
 func createTable(name string, columns string) {
 	fmt.Printf("    - Creating " + name + " tables if they dont exist ")
 	//Create the necessary tables for openlist
 	_, err = db.Exec("CREATE TABLE IF NOT EXISTS " + name + " " + columns)
-	if err != nil {
-		fmt.Println("[FAILED]")
-		panic(err)
-	} else {
-		fmt.Println("[SUCCESS]")
-	}
+	didError(err)
 
 }
 
@@ -96,12 +81,7 @@ func GetListsInDb(owner string) []List {
 	fmt.Printf("Fetching all lists of '" + owner + "' from " + listTable)
 
 	results, err := db.Query("SELECT id, owner, title, date FROM " + listTable)
-	if err != nil {
-		fmt.Println("[FAILED]")
-		panic(err)
-	} else {
-		fmt.Println("[SUCCESS]")
-	}
+	didError(err)
 	for results.Next() {
 		var list List
 
@@ -121,12 +101,7 @@ func GetListInDb(id string) List {
 	fmt.Printf("Fetching list with id '" + id + "' from " + listTable)
 
 	result, err := db.Query("SELECT id, owner, title, date FROM " + listTable + " WHERE id='" + id + "'")
-	if err != nil {
-		fmt.Println("[FAILED]")
-		panic(err)
-	} else {
-		fmt.Println("[SUCCESS]")
-	}
+	didError(err)
 	result.Next()
 
 	err = result.Scan(&list.ID, &list.Owner, &list.Title, &list.Date)
@@ -144,12 +119,7 @@ func SaveListInDb(list List) {
 	fmt.Printf("Inserting '" + list.Title + "' into List table ")
 	fmt.Printf(list.insertSQL())
 	_, err = db.Exec(list.insertSQL())
-	if err != nil {
-		fmt.Println("[FAILED]")
-		panic(err)
-	} else {
-		fmt.Println("[SUCCESS]")
-	}
+	didError(err)
 }
 
 //UpdateListInDb will take list and update it in db
@@ -158,10 +128,5 @@ func UpdateListInDb(list List) {
 	fmt.Printf("Updating '" + list.Title + "' into List table ")
 	fmt.Printf(list.updateSQL())
 	_, err = db.Exec(list.updateSQL())
-	if err != nil {
-		fmt.Println("[FAILED]")
-		panic(err)
-	} else {
-		fmt.Println("[SUCCESS]")
-	}
+	didError(err)
 }
