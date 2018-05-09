@@ -16,6 +16,12 @@ var dbName = "openlist"
 var listTable = "List"
 var listItemTable = "ListItem"
 var userTable = "User"
+var projectTable = "Project"
+var sectionTable = "Section"
+var taskTable = "Task"
+var userTaskTable = "UserTask"
+var userProjectTable = "UserProject"
+var taskSection = "TaskSection"
 
 func initDb() {
 	attempts := 1
