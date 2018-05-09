@@ -1,14 +1,17 @@
 package main
 
-import "strconv"
+import (
+	"fmt"
+	"strconv"
+)
 
 //List struct
 type List struct {
-	ID    string     `json:"id"`
-	Owner string     `json:"owner"`
-	Title string     `json:"title"`
-	Date  int64      `json:"date"`
-	Items []ListItem `json:"items"`
+	ID    string `json:"id"`
+	Owner string `json:"owner"`
+	Title string `json:"title"`
+	Date  int64  `json:"date"`
+	Items []Task `json:"items"`
 }
 
 func (l List) insertSQL() string {
@@ -17,13 +20,6 @@ func (l List) insertSQL() string {
 
 func (l List) updateSQL() string {
 	return "UPDATE " + listTable + " SET owner='" + l.Owner + "',title='" + l.Title + "',date='" + strconv.Itoa(int(l.Date)) + "' WHERE id='" + l.ID + "'"
-}
-
-//ListItem struct
-type ListItem struct {
-	ID   string `json:"id"`
-	List string `json:"list"`
-	Data string `json:"data"`
 }
 
 //User struct
@@ -36,12 +32,36 @@ type User struct {
 	Token     string `json:"token"`
 }
 
-func (u User) insertSQL() string {
-	return "INSERT INTO " + userTable + " VALUES ('" + u.ID + "','" + u.FirstName + "','" + u.LastName + "','" + u.Email + "','" + u.Auth + "','" + u.Token + "')"
+//Task struct
+type Task struct {
+	ID          string   `json:"id"`
+	Title       string   `json:"list"`
+	Description string   `json:"description"`
+	Created     string   `json:"created"`
+	Due         string   `json:"due"`
+	Owners      []User   `json:"owners"`
+	Section     []string `json:"section"`
 }
 
-func (u User) updateSQL() string {
-	return "UPDATE " + userTable + " SET first='" + u.FirstName + "',last='" + u.LastName + "',email='" + u.Email + "',auth='" + u.Auth + "',token='" + u.Token + "' WHERE id='" + u.ID + "'"
+func (u User) insertSQL() {
+	fmt.Printf("    - Inserting user '" + u.ID + "' into database. ")
+	_, err = db.Exec(fmt.Sprintf("INSERT INTO %s VALUES (%s,%s,%s,%s,%s,%s)", userTable, u.ID, u.FirstName, u.LastName, u.Email, u.Auth, u.Token))
+	didError(err)
+}
+
+func (u User) updateSQL() {
+	fmt.Printf("    - Updating user '" + u.ID + "' in database. ")
+	_, err = db.Exec(fmt.Sprintf("UPDATE %s SET first='%s' last='%s' email='%s' auth='%s' token='%s' WHERE id='%s'", userTable, u.FirstName, u.LastName, u.Email, u.Auth, u.Token, u.ID))
+	didError(err)
+}
+
+func didError(err error) {
+	if err != nil {
+		fmt.Println("[FAILED]")
+		panic(err)
+	} else {
+		fmt.Println("[SUCCESS]")
+	}
 }
 
 //ex
