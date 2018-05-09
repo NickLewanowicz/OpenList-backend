@@ -81,41 +81,6 @@ func didError(err error) {
 	}
 }
 
-//ex
-// type User {
-//     id: String
-//     firstName: String
-//     lastName: String
-//     email: String
-//     projects: [Project]
-//   }
-
-//   type Project {
-//     id: String
-//     title: String
-//     created: Int
-//     owners: [User]
-//     sections: [Section]
-//   }
-
-//   type Section {
-//     id: String
-//     title: String
-//     projectId: String
-//     index: int
-//     tasks: [Task]
-//   }
-
-//   type Task {
-//     id: String
-//     title: String
-//     description: String
-//     created: Int
-//     due: Int
-//     owners: [User]
-//     sectionId: String
-//   }
-
 //TODO: Eventually replace hardcoded logic with struct to init db and tables
 // type TableDec struct {
 // 	name
