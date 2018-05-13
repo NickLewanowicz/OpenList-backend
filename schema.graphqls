@@ -30,9 +30,9 @@ type Task {
 }
 
 
-//type Mutation {
-//    createUser(name: String!, authProvider: AuthData!): User
-//}
+type Mutation {
+    createUser(name: String!, authProvider: AuthData!): User
+}
 
 schema {
     query: Query
