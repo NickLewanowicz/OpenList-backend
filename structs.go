@@ -32,17 +32,6 @@ type User struct {
 	Token     string `json:"token"`
 }
 
-//Task struct
-type Task struct {
-	ID          string   `json:"id"`
-	Title       string   `json:"list"`
-	Description string   `json:"description"`
-	Created     string   `json:"created"`
-	Due         string   `json:"due"`
-	Owners      []User   `json:"owners"`
-	Section     []string `json:"section"`
-}
-
 func (u User) insertSQL() {
 	fmt.Printf("    - Inserting user '" + u.ID + "' into database. ")
 	_, err = db.Exec(fmt.Sprintf("INSERT INTO %s VALUES (%s,%s,%s,%s,%s,%s)", userTable, u.ID, u.FirstName, u.LastName, u.Email, u.Auth, u.Token))
@@ -53,6 +42,17 @@ func (u User) updateSQL() {
 	fmt.Printf("    - Updating user '" + u.ID + "' in database. ")
 	_, err = db.Exec(fmt.Sprintf("UPDATE %s SET first='%s' last='%s' email='%s' auth='%s' token='%s' WHERE id='%s'", userTable, u.FirstName, u.LastName, u.Email, u.Auth, u.Token, u.ID))
 	didError(err)
+}
+
+//Task struct
+type Task struct {
+	ID          string   `json:"id"`
+	Title       string   `json:"list"`
+	Description string   `json:"description"`
+	Created     string   `json:"created"`
+	Due         string   `json:"due"`
+	Owners      []User   `json:"owners"`
+	Section     []string `json:"section"`
 }
 
 func (t Task) insertSQL() {
