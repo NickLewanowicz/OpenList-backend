@@ -72,13 +72,19 @@ var routes = Routes{
 	Route{
 		"GraphQl",
 		"POST",
-		"/api/graphql",
+		"/query",
 		GraphQl,
 	},
 	Route{
 		"GraphQl",
 		"GET",
-		"/api/graphql",
+		"/query",
 		GraphQl,
+	},
+	Route{
+		"GraphiQl",
+		"GET",
+		"/",
+		GraphiQl,
 	},
 }
