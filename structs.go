@@ -97,13 +97,13 @@ func (s Section) updateSQL() {
 
 //Task struct
 type Task struct {
-	ID          string   `json:"id"`
-	Title       string   `json:"list"`
-	Description string   `json:"description"`
-	Created     string   `json:"created"`
-	Due         string   `json:"due"`
-	Owners      []User   `json:"owners"`
-	Section     []string `json:"section"`
+	ID          string `json:"id"`
+	Title       string `json:"list"`
+	Description string `json:"description"`
+	Created     string `json:"created"`
+	Due         string `json:"due"`
+	Section     string `json:"section"`
+	Owners      []User `json:"owners"`
 }
 
 func (t Task) insertSQL() {
