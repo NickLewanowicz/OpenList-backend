@@ -13,15 +13,16 @@ import (
 var db *sql.DB
 var err error
 var dbName = "openlist"
+
 var listTable = "List"
 var listItemTable = "ListItem"
 var userTable = "User"
-var projectTable = "Project"
-var sectionTable = "Section"
+var projTable = "Project"
+var sectTable = "Section"
 var taskTable = "Task"
 var userTaskTable = "UserTask"
-var userProjectTable = "UserProject"
-var taskSection = "TaskSection"
+var userProjTable = "UserProject"
+var taskSectTable = "TaskSection"
 
 func initDb() {
 	attempts := 1
@@ -39,6 +40,22 @@ func initDb() {
 	listColumns := "(id varchar(40), owner varchar(32), title varchar(32), date int(11))"
 	listItemColumns := "(id varchar(32), list varchar(32), data varchar(1000))"
 
+	//Users have __id__, first, last, email, auth (type), token (string)
+	userCol := "(id varchar(40), first varchar(12), last varchar(12), email varchar(32), auth varchar(40), token varchar(40), PRIMARY KEY (id))"
+
+	//Projects have __id__, title, created
+	projCol := "(id varchar(40), title varchar(32), created int(11), PRIMARY KEY (id))"
+
+	//Sections have __id__, title, **projectId**, position
+	sectCol := "(id varchar(40), title varchar(32), projectId varchar(40), position int(2), PRIMARY KEY (id), FOREIGN KEY (projectId) REFERENCES Project(id))"
+
+	//Tasks have __id__, title, desc, created, due
+	taskCol := "(id varchar(40), title varchar(32), description varchar(1000), created int(11), due int(11), PRIMARY KEY (id))"
+
+	userProjCol := "(userId varchar(40), projId varchar(40), FOREIGN KEY (userId) REFERENCES User(id), FOREIGN KEY (projId) REFERENCES Project(id))"
+	userTaskCol := "(userId varchar(40), taskId varchar(40), FOREIGN KEY (userId) REFERENCES User(id), FOREIGN KEY (taskId) REFERENCES Task(id))"
+	sectTaskCol := "(sectId varchar(40), taskId varchar(40), FOREIGN KEY (sectId) REFERENCES Section(id), FOREIGN KEY (taskId) REFERENCES Task(id))"
+
 	fmt.Printf("    - Connected to DB ")
 	if err != nil {
 		fmt.Println("[FAILED]")
@@ -51,6 +68,13 @@ func initDb() {
 	createDb(dbName)
 	createTable(listTable, listColumns)
 	createTable(listItemTable, listItemColumns)
+	createTable(userTable, userCol)
+	createTable(projTable, projCol)
+	createTable(sectTable, sectCol)
+	createTable(taskTable, taskCol)
+	createTable(userTaskTable, userTaskCol)
+	createTable(userProjTable, userProjCol)
+	createTable(taskSectTable, sectTaskCol)
 
 	fmt.Printf("MySQL Database fully initialized\n\n")
 }
