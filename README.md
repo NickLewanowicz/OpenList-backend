@@ -16,10 +16,10 @@ MySQL: https://dev.mysql.com/downloads/mysql/
 
 After I complete the dockerfile this hopefully wont be necessary
 For mac/unix install run the following in bash:  
-- `go get github.com/NickLewanowicz/OpenList-backend`
-- `cd OpenList-backend`
+- `go get github.com/NickLewanowicz/kickit-backend`
+- `cd kickit-backend`
 - `go build`
-- `OpenList-backend`
+- `kickit-backend`
 
 The server is now running :)
 
