@@ -12,7 +12,7 @@ services:
       - /var/lib/mysql:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: openlist
+      MYSQL_DATABASE: kickit
     network_mode: bridge
       
       

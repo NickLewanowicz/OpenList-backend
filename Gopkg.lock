@@ -23,6 +23,7 @@
   branch = "master"
   name = "github.com/graph-gophers/graphql-go"
   packages = [
+    ".",
     "errors",
     "internal/common",
     "internal/exec",
@@ -34,15 +35,40 @@
     "internal/validation",
     "introspection",
     "log",
+    "relay",
     "trace"
   ]
   revision = "e698b6abc17ead17ea89d3d22a4b2625299701e3"
 
 [[projects]]
   branch = "master"
-  name = "github.com/neelance/graphql-go"
-  packages = ["."]
-  revision = "e698b6abc17ead17ea89d3d22a4b2625299701e3"
+  name = "github.com/howtographql/graphql-go"
+  packages = [
+    "db",
+    "resolvers"
+  ]
+  revision = "04819498d25a707965211f76e83031098a4e14e5"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/lib/pq"
+  packages = [
+    ".",
+    "oid"
+  ]
+  revision = "d34b9ff171c21ad295489235aec8b6626023cd04"
+
+[[projects]]
+  name = "github.com/mattes/migrate"
+  packages = [
+    ".",
+    "database",
+    "database/postgres",
+    "source",
+    "source/file"
+  ]
+  revision = "035c07716cd373d88456ec4d701402df52584cb4"
+  version = "v3.0.1"
 
 [[projects]]
   name = "github.com/opentracing/opentracing-go"
@@ -69,6 +95,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "ffb7fa36ba89828e74cd6bf2956f8f1674e6ce2dd5dc6dcb0556e43cd0c7f39a"
+  inputs-digest = "9518e7f17c0323fc4d7dbe896b427111f31f334ffeec32772b3524589452ab53"
   solver-name = "gps-cdcl"
   solver-version = 1

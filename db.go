@@ -12,7 +12,7 @@ import (
 
 var db *sql.DB
 var err error
-var dbName = "openlist"
+var dbName = "kickit"
 
 var listTable = "List"
 var listItemTable = "ListItem"
@@ -94,7 +94,7 @@ func createDb(name string) {
 
 func createTable(name string, columns string) {
 	fmt.Printf("    - Creating " + name + " tables if they dont exist ")
-	//Create the necessary tables for openlist
+	//Create the necessary tables for kickit
 	_, err = db.Exec("CREATE TABLE IF NOT EXISTS " + name + " " + columns)
 	didError(err)
 
