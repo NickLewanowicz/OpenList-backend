@@ -70,18 +70,6 @@ var routes = Routes{
 		DeleteList,
 	},
 	Route{
-		"GraphQl",
-		"POST",
-		"/query",
-		GraphQl,
-	},
-	Route{
-		"GraphQl",
-		"GET",
-		"/query",
-		GraphQl,
-	},
-	Route{
 		"GraphiQl",
 		"GET",
 		"/",

@@ -6,7 +6,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/graph-gophers/graphql-go"
+	graphql "github.com/graph-gophers/graphql-go"
 	"github.com/graph-gophers/graphql-go/relay"
 )
 
@@ -22,21 +22,16 @@ func getSchema(path string) (string, error) {
 func main() {
 	//Init Router
 	fmt.Println("Server starting up...")
+	s, err := getSchema("./schema.graphql")
+	didError(err)
+
+	schema := graphql.MustParseSchema(s, &Resolver{})
+	http.Handle("/query", &relay.Handler{Schema: schema})
 	r := NewRouter()
 	initDb()
 	log.Fatal(http.ListenAndServe(":8000", r))
 	defer db.Close()
 
-	//GQL
-	s, err := getSchema("./schema.graphql")
-	if err != nil {
-		panic(err)
-	}
-
-	schema := graphql.MustParseSchema(s, &Resolver{})
-
-	http.Handle("/query", &relay.Handler{Schema: schema})
-	//GQL
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
 
