@@ -21,7 +21,11 @@ var userTaskTable = "UserTask"
 var userProjTable = "UserProject"
 var taskSectTable = "TaskSection"
 
-func initDb() {
+//Resolver is a type for functions which return query data
+type Resolver struct{}
+
+//InitDb initializes db
+func InitDb() {
 	attempts := 1
 	for err != nil || attempts < 2 {
 		fmt.Println("Attempting to Initialize MySQL Database [" + strconv.Itoa(attempts) + "/50]")
