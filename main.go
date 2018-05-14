@@ -5,9 +5,10 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
-
+	//"github.com/nicklewanowicz/kickit-backend/db"
 	graphql "github.com/graph-gophers/graphql-go"
 	"github.com/graph-gophers/graphql-go/relay"
+	structs "github.com/nicklewanowicz/kickit-backend/structs"
 )
 
 func getSchema(path string) (string, error) {
@@ -25,14 +26,23 @@ func main() {
 	s, err := getSchema("./schema.graphql")
 	didError(err)
 
-	schema := graphql.MustParseSchema(s, &Resolver{})
+	schema := graphql.MustParseSchema(s, &structs.Resolver{})
 	http.Handle("/query", &relay.Handler{Schema: schema})
 	r := NewRouter()
-	initDb()
+	structs.InitDb()
 	log.Fatal(http.ListenAndServe(":8000", r))
-	defer db.Close()
 
 	log.Fatal(http.ListenAndServe(":8080", nil))
+}
+
+//didError will signal an error
+func didError(err error) {
+	if err != nil {
+		fmt.Println("[FAILED]")
+		panic(err)
+	} else {
+		fmt.Println("[SUCCESS]")
+	}
 }
 
 var page = []byte(`
