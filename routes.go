@@ -40,38 +40,14 @@ func NewRouter() *mux.Router {
 
 var routes = Routes{
 	Route{
-		"GetLists",
+		"GraphiQl",
 		"GET",
-		"/api/v1/lists",
-		GetLists,
-	},
-	Route{
-		"GetList",
-		"GET",
-		"/api/v1/lists/{id}",
-		GetList,
-	},
-	Route{
-		"CreateList",
-		"POST",
-		"/api/v1/lists",
-		CreateList,
-	},
-	Route{
-		"UpdateList",
-		"PUT",
-		"/api/v1/lists/{id}",
-		UpdateList,
-	},
-	Route{
-		"DeleteList",
-		"DELETE",
-		"/api/v1/lists/{id}",
-		DeleteList,
+		"/",
+		GraphiQl,
 	},
 	Route{
 		"GraphiQl",
-		"GET",
+		"POST",
 		"/",
 		GraphiQl,
 	},
