@@ -27,9 +27,19 @@ func (u User) updateSQL() {
 	didError(err)
 }
 
-// First resolves the Name field for User, it is all caps to avoid name clashes
-func (u *User) First(ctx context.Context) *string {
+// USERID resolves the user ID
+func (u *User) id(ctx context.Context) *string {
+	return &u.ID
+}
+
+// FIRST resolves the Name field for User, it is all caps to avoid name clashes
+func (u *User) FIRST(ctx context.Context) *string {
 	return &u.FirstName
+}
+
+// LAST resolves the Name field for User, it is all caps to avoid name clashes
+func (u *User) LAST(ctx context.Context) *string {
+	return &u.LastName
 }
 
 //GetUser will get user with id
