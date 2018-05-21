@@ -1,6 +1,6 @@
-## kickit-Backend
+<b>WARNING: </b><i>Progress on the Golang backend for Kickit has been delayed in favour of the Hapi.JS backend [here](http://www.github.com/nicklewanowicz/kickit-backend) as it will reduce barrier to entry for contributors to the project by providing a full javascript stack. The intention is to circle back and build out the golang backend in the future to offer options for the backend of your Kickit install.</i>
 
-<b>WARNING: </b><i>Progress on the Golang backend for Kickit has been delayed in favour of the Hapi.JS backend [here](http://www.github.com/nicklewanowicz/kickit-backend) as it will reduce barrier to entry for contributors to the project by provide a full javascript stack. The intention is to circle back and build out the golang backend in the future to offer options for the backend of your Kickit install.</i>
+## kickit-Backend
 
 This repository will contain the Go implementation for the kickit backend. The intention of this project is to create a fully dockerized open source service to manage users, projects, and tasks. 
 
