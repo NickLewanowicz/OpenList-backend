@@ -1,4 +1,7 @@
 ## kickit-Backend
+
+<b>WARNING: </b><i>Progress on the Golang backend for Kickit has been delayed in favour of the Hapi.JS backend [here](http://www.github.com/nicklewanowicz/kickit-backend) as it will reduce barrier to entry for contributors to the project by provide a full javascript stack. The intention is to circle back and build out the golang backend in the future to offer options for the backend of your Kickit install.</i>
+
 This repository will contain the Go implementation for the kickit backend. The intention of this project is to create a fully dockerized open source service to manage users, projects, and tasks. 
 
 The end goal for this project is to create a repo which anybody can fork or clone and put up on any service which supports docker ie Now-CLI, AWS, Vultr, ect. and have their own project/task manager. The UI for this lives [here](https://github.com/NickLewanowicz/OpenList-app) as a react native application and there will be a desktop web app made in react but there is no projected timeline for completion for those.
